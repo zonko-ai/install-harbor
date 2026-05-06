@@ -8,6 +8,5 @@
   },
   "homepage": "https://tryharbor.ai",
   "repository": "https://github.com/zonko-ai/install-harbor",
-  "license": "UNLICENSED",
-  "skills": "./skills/"
+  "license": "UNLICENSED"
 }

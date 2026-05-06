@@ -10,7 +10,9 @@ npx -y @zonko-ai/harbor serve
 
 ## Install
 
-Platforms are grouped by install complexity. Plugin-capable platforms get marketplace commands. Other platforms get exact files to create and paste.
+Platforms are grouped by install complexity. Plugin-capable platforms get marketplace commands. Other platforms get exact MCP files to create and paste.
+
+Harbor skills are seeded by the `@zonko-ai/harbor` npm postinstall/onboarding path when `npx -y @zonko-ai/harbor serve` installs the package. They are refreshed again by Harbor auth/setup flows. This repo does not ask users to copy `AGENTS.md` or per-project instruction files.
 
 <details open>
 <summary><strong>Claude Code</strong> — plugin marketplace</summary>
@@ -77,12 +79,6 @@ args = ["-y", "@zonko-ai/harbor", "serve"]
 
 </details>
 
-Optional project routing file:
-
-```bash
-cp configs/codex/AGENTS.md ./AGENTS.md
-```
-
 Full config reference: [configs/codex/config.toml](configs/codex/config.toml)
 
 </details>
@@ -133,12 +129,6 @@ Add this to `~/.gemini/settings.json`:
 }
 ```
 
-Optional project routing file:
-
-```bash
-cp configs/gemini-cli/GEMINI.md ./GEMINI.md
-```
-
 **Verify:**
 
 ```text
@@ -150,7 +140,7 @@ Full config reference: [configs/gemini-cli/settings.json](configs/gemini-cli/set
 </details>
 
 <details>
-<summary><strong>Cursor</strong> — MCP, hooks, and rules</summary>
+<summary><strong>Cursor</strong> — MCP and hooks</summary>
 
 **Prerequisites:** Cursor Agent and Node.js.
 
@@ -188,20 +178,9 @@ Create `.cursor/hooks.json`:
 }
 ```
 
-Create `.cursor/rules/hrbr.mdc`:
-
-```md
----
-description: Route Harbor work through the local hrbr MCP tools.
-alwaysApply: true
----
-
-Prefer hrbr_* MCP tools over shelling out to the hrbr CLI. Read Harbor skills for system guidance and translate CLI examples into MCP actions. Use hrbr_plugins for provider marketplace install/connect/readiness, hrbr_tools for tool search/describe/invoke, hrbr_exec for multi-step cloud execution, and hrbr_context for continuity.
-```
-
 **Verify:** open Cursor Settings > MCP and confirm `hrbr` is connected.
 
-Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/cursor/hooks.json](configs/cursor/hooks.json) | [configs/cursor/hrbr.mdc](configs/cursor/hrbr.mdc)
+Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/cursor/hooks.json](configs/cursor/hooks.json)
 
 </details>
 
@@ -225,12 +204,6 @@ Add this to `opencode.json` in your project root or `~/.config/opencode/opencode
   },
   "plugin": ["hrbr"]
 }
-```
-
-Optional project routing file:
-
-```bash
-cp configs/opencode/AGENTS.md ./AGENTS.md
 ```
 
 **Verify:** start OpenCode and ask for `hrbr_doctor action=status`.
@@ -259,13 +232,6 @@ Create `.vscode/mcp.json`:
 }
 ```
 
-Optional project routing file:
-
-```bash
-mkdir -p .github
-cp configs/vscode-copilot/copilot-instructions.md .github/copilot-instructions.md
-```
-
 </details>
 
 <details>
@@ -281,26 +247,6 @@ Add MCP server in the IDE settings:
 Name: hrbr
 Command: npx
 Args: -y @zonko-ai/harbor serve
-```
-
-Optional project routing file:
-
-```bash
-mkdir -p .github
-cp configs/jetbrains-copilot/copilot-instructions.md .github/copilot-instructions.md
-```
-
-</details>
-
-<details>
-<summary><strong>Other clients</strong> — routing files</summary>
-
-Copy the matching routing file after configuring an MCP server named `hrbr` with command `npx -y @zonko-ai/harbor serve`:
-
-```bash
-cp configs/pi/AGENTS.md ./AGENTS.md
-cp configs/qwen-code/QWEN.md ./QWEN.md
-cp configs/kiro/KIRO.md ./KIRO.md
 ```
 
 </details>

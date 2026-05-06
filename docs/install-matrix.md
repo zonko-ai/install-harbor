@@ -23,7 +23,6 @@ Target marketplace/config files:
 - .agents/plugins/marketplace.json
 - .codex-plugin/plugin.json
 - configs/codex/config.toml
-- configs/codex/AGENTS.md
 
 Manual MCP config:
 
@@ -35,15 +34,19 @@ args = ["-y", "@zonko-ai/harbor", "serve"]
 
 ## Cursor
 
-Use configs/cursor/mcp.json and configs/cursor/hrbr.mdc.
+Use configs/cursor/mcp.json and configs/cursor/hooks.json.
 
 ## Gemini CLI
 
-Use configs/gemini-cli/settings.json or split mcp.json plus GEMINI.md.
+Use configs/gemini-cli/settings.json or split mcp.json.
 
 ## OpenCode
 
-Use configs/opencode/opencode.json and configs/opencode/AGENTS.md.
+Use configs/opencode/opencode.json.
+
+## Skills
+
+Harbor skills are owned by the `@zonko-ai/harbor` package. The npm postinstall/onboarding path seeds them when `npx -y @zonko-ai/harbor serve` installs the package, unless the package is installed under CI, inside a workspace checkout, or with the explicit opt-out environment variables. Auth/login can refresh them, but auth is not required for the postinstall seed.
 
 ## Provider Marketplace
 

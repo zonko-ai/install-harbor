@@ -1,7 +1,0 @@
----
-description: Route Harbor work through the local hrbr MCP tools.
-alwaysApply: true
----
-
-Prefer hrbr_* MCP tools over shelling out to the hrbr CLI. Read Harbor skills for system guidance and translate CLI examples into MCP actions. Use hrbr_plugins for provider marketplace install/connect/readiness, hrbr_tools for tool search/describe/invoke, hrbr_exec for multi-step cloud execution, and hrbr_context for continuity.
-
