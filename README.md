@@ -50,11 +50,22 @@ claude mcp add hrbr -- npx -y @zonko-ai/harbor serve
 </details>
 
 <details>
-<summary><strong>Codex</strong> — config.toml</summary>
+<summary><strong>Codex</strong> — plugin marketplace</summary>
 
-**Prerequisites:** Codex CLI with MCP support and Node.js.
+**Prerequisites:** Codex CLI with plugin support and Node.js.
 
 **Install:**
+
+```bash
+codex plugin marketplace add zonko-ai/install-harbor
+```
+
+Then open `/plugins`, choose `hrbr`, and install it.
+
+**Verify:** restart Codex and list MCP tools. `hrbr_doctor action=status` should return local setup status.
+
+<details>
+<summary>Alternative — MCP-only config</summary>
 
 Add this to `~/.codex/config.toml`:
 
@@ -64,13 +75,13 @@ command = "npx"
 args = ["-y", "@zonko-ai/harbor", "serve"]
 ```
 
+</details>
+
 Optional project routing file:
 
 ```bash
 cp configs/codex/AGENTS.md ./AGENTS.md
 ```
-
-**Verify:** restart Codex and list MCP tools. `hrbr_doctor action=status` should return local setup status.
 
 Full config reference: [configs/codex/config.toml](configs/codex/config.toml)
 
