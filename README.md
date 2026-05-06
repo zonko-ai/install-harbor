@@ -230,10 +230,16 @@ openclaw gateway restart
 openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
 ```
 
-**Verify:**
+**Verify bundle install:**
 
 ```bash
 openclaw plugins list
+openclaw plugins inspect hrbr --json
+```
+
+**Verify MCP-only registry install:**
+
+```bash
 openclaw mcp show hrbr --json
 ```
 

@@ -53,12 +53,14 @@ Install target flow:
 ```txt
 openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
 openclaw gateway restart
+openclaw plugins inspect hrbr --json
 ```
 
 Fallback MCP registry flow:
 
 ```txt
 openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
+openclaw mcp show hrbr --json
 ```
 
 Target files:
