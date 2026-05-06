@@ -44,6 +44,45 @@ Use configs/gemini-cli/settings.json or split mcp.json.
 
 Use configs/opencode/opencode.json.
 
+## OpenClaw
+
+OpenClaw supports compatible Codex/Claude/Cursor bundles through `openclaw plugins install`.
+
+Install target flow:
+
+```txt
+openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
+openclaw gateway restart
+```
+
+Fallback MCP registry flow:
+
+```txt
+openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
+```
+
+Target files:
+
+- .mcp.json
+- .codex-plugin/plugin.json
+- .claude-plugin/plugin.json
+- configs/openclaw/mcp.json
+
+## Hermes
+
+Hermes has first-class MCP server management with `hermes mcp add`. Use MCP rather than a native Hermes plugin for Harbor.
+
+Install target flow:
+
+```txt
+hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
+hermes mcp test hrbr
+```
+
+Target files:
+
+- configs/hermes/config.yaml
+
 ## Skills
 
 Harbor skills are owned by the `@zonko-ai/harbor` package. The npm postinstall/onboarding path seeds them when `npx -y @zonko-ai/harbor serve` installs the package, unless the package is installed under CI, inside a workspace checkout, or with the explicit opt-out environment variables. Auth/login can refresh them, but auth is not required for the postinstall seed.

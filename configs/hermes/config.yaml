@@ -1,0 +1,7 @@
+mcp_servers:
+  hrbr:
+    command: npx
+    args:
+      - -y
+      - "@zonko-ai/harbor"
+      - serve

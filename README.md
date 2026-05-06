@@ -213,6 +213,57 @@ Full config reference: [configs/opencode/opencode.json](configs/opencode/opencod
 </details>
 
 <details>
+<summary><strong>OpenClaw</strong> — plugin marketplace or MCP registry</summary>
+
+**Prerequisites:** OpenClaw and Node.js.
+
+**Install as a compatible bundle:**
+
+```bash
+openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
+openclaw gateway restart
+```
+
+**Alternative — MCP-only registry:**
+
+```bash
+openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
+```
+
+**Verify:**
+
+```bash
+openclaw plugins list
+openclaw mcp show hrbr --json
+```
+
+Full config reference: [configs/openclaw/mcp.json](configs/openclaw/mcp.json)
+
+</details>
+
+<details>
+<summary><strong>Hermes</strong> — MCP server</summary>
+
+**Prerequisites:** Hermes Agent and Node.js.
+
+**Install:**
+
+```bash
+hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
+```
+
+**Verify:**
+
+```bash
+hermes mcp test hrbr
+hermes mcp list
+```
+
+Full config reference: [configs/hermes/config.yaml](configs/hermes/config.yaml)
+
+</details>
+
+<details>
 <summary><strong>VS Code Copilot</strong> — MCP config</summary>
 
 **Prerequisites:** VS Code Copilot Chat with MCP support and Node.js.

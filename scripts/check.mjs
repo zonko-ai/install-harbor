@@ -5,9 +5,12 @@ const required = [
   ".claude-plugin/marketplace.json",
   ".claude-plugin/plugin.json",
   ".codex-plugin/plugin.json",
+  ".mcp.json",
   "configs/codex/config.toml",
   "configs/cursor/mcp.json",
+  "configs/hermes/config.yaml",
   "configs/gemini-cli/mcp.json",
+  "configs/openclaw/mcp.json",
   "configs/opencode/opencode.json"
 ];
 
