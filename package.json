@@ -1,0 +1,10 @@
+{
+  "name": "install-harbor",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Harness marketplace and config packaging for Harbor hrbr MCP.",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "license": "UNLICENSED"
+}

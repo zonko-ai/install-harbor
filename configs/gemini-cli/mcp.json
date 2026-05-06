@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "hrbr": {
+      "command": "npx",
+      "args": ["-y", "@zonko-ai/harbor", "serve"]
+    }
+  }
+}
+

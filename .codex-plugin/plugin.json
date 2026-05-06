@@ -1,0 +1,13 @@
+{
+  "name": "hrbr",
+  "version": "0.1.0",
+  "description": "Local Harbor MCP surface for provider marketplace, workspace tools, cloud exec, traces, and context.",
+  "author": {
+    "name": "Zonko AI",
+    "url": "https://github.com/zonko-ai"
+  },
+  "homepage": "https://tryharbor.ai",
+  "repository": "https://github.com/zonko-ai/install-harbor",
+  "license": "UNLICENSED",
+  "skills": "./skills/"
+}

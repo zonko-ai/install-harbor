@@ -1,0 +1,20 @@
+{
+  "name": "hrbr",
+  "version": "0.1.0",
+  "description": "Local Harbor MCP surface over the hrbr CLI package.",
+  "author": {
+    "name": "Zonko AI"
+  },
+  "homepage": "https://tryharbor.ai",
+  "repository": "https://github.com/zonko-ai/install-harbor",
+  "license": "UNLICENSED",
+  "keywords": ["harbor", "hrbr", "mcp", "plugins", "workspace", "exec"],
+  "mcpServers": {
+    "hrbr": {
+      "command": "npx",
+      "args": ["-y", "@zonko-ai/harbor", "serve"]
+    }
+  },
+  "hooks": "./hooks/hooks.json"
+}
+

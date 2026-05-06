@@ -1,0 +1,50 @@
+{
+  "description": "hrbr MCP hooks: Harbor routing, session capture, compaction hints.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx -y @zonko-ai/harbor hook sessionstart"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Grep|WebFetch|mcp__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx -y @zonko-ai/harbor hook pretooluse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read|Write|Edit|Glob|Grep|mcp__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx -y @zonko-ai/harbor hook posttooluse"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx -y @zonko-ai/harbor hook precompact"
+          }
+        ]
+      }
+    ]
+  }
+}
+
