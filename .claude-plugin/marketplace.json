@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Claude Code plugins for Harbor / hrbr.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "hrbr",
       "source": "./",
       "description": "Local Harbor MCP surface for workspace, provider marketplace, plugin tools, exec, context, traces, and setup diagnostics.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Zonko AI"
       },
@@ -21,4 +21,3 @@
     }
   ]
 }
-

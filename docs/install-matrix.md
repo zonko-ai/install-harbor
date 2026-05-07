@@ -50,6 +50,14 @@ codex plugin marketplace add zonko-ai/install-harbor
 
 Then open `/plugins`, select `Zonko AI Harbor`, choose `hrbr`, and install it. Hooks remain a separate manual Codex config.
 
+Update command:
+
+```bash
+codex plugin marketplace upgrade zonko-ai-harbor
+```
+
+Codex stores installed plugins under `~/.codex/plugins/cache/<marketplace>/<plugin>/<version>/`. Any change to Codex plugin assets, MCP config, skills, or hooks must bump `plugins/hrbr/.codex-plugin/plugin.json` `version`; otherwise an installed plugin may keep using the old cache path until manually refreshed.
+
 Manual MCP fallback:
 
 ```toml

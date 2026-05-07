@@ -1,6 +1,6 @@
 {
   "name": "hrbr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local Harbor MCP surface for provider marketplace, workspace tools, cloud exec, traces, and context.",
   "author": {
     "name": "Zonko AI",

@@ -137,6 +137,14 @@ Restart Codex.
 
 Manual fallback configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
 
+**Update:**
+
+```bash
+codex plugin marketplace upgrade zonko-ai-harbor
+```
+
+Codex caches installed plugins by marketplace, plugin name, and plugin version. Harbor bumps the `hrbr` plugin version whenever plugin assets, MCP config, skills, or hooks change so upgrades install into a new cache path.
+
 </details>
 
 <details>
