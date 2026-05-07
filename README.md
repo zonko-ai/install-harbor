@@ -21,7 +21,7 @@ For copy-paste MCP configs, this repo uses the package bootstrap form:
 npx -y @zonko-ai/harbor serve
 ```
 
-That keeps first-run client installs from failing when `hrbr` is not on `PATH`. Beach also makes a rate-limited background attempt to install the CLI when it starts and cannot find `hrbr`; set `HRBR_CLI_AUTO_INSTALL=0` to disable that best-effort path.
+That keeps first-run client installs from failing when `hrbr` is not on `PATH`.
 
 ## Install
 

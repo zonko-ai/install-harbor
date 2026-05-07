@@ -9,7 +9,7 @@ npm install -g @zonko-ai/harbor
 hrbr login
 ```
 
-The copied MCP config may still use `npx -y @zonko-ai/harbor serve` so a fresh client can bootstrap without an existing `hrbr` binary. Beach performs a rate-limited background install attempt when it starts and cannot find `hrbr`; `HRBR_CLI_AUTO_INSTALL=0` disables that path.
+The copied MCP config may still use `npx -y @zonko-ai/harbor serve` so a fresh client can bootstrap without an existing `hrbr` binary.
 
 ## Claude Code
 

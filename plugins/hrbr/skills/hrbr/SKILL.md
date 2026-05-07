@@ -19,30 +19,33 @@ exposed through MCP first.
 For read-only Harbor checks, call the relevant MCP tool directly. Ask before
 write, install/remove, OAuth/connect, publish, cancel, or destructive actions.
 
-## Operating Model
+## Tool Use
 
-Harbor is a workspace-scoped MCP control plane. Treat provider marketplace
-state, plugin installation, OAuth readiness, tools, runs, traces, and context as
-workspace facts. Do not infer that a local package install means the current
-workspace is connected or authorized.
+Use the MCP tool that matches the user's request:
 
-Use the MCP tools as the primary interface:
+- `hrbr_doctor`: check local setup, auth state, MCP startup health, and missing
+  requirements.
+- `hrbr_workspace`: inspect the active Harbor workspace and connection state.
+- `hrbr_plugins`: discover provider marketplace entries, installed plugins,
+  source readiness, and connection requirements.
+- `hrbr_tools`: list the exact tools currently available through Harbor before
+  trying to call one.
+- `hrbr_exec`: run one-off Harbor workspace code for fan-out, filtering,
+  summaries, or smoke tests.
+- `hrbr_traces`: inspect prior Harbor tool calls, runs, and failures.
+- `hrbr_context`: read Harbor-provided context for the current workspace or
+  session.
 
-- Start with setup or workspace status when the user asks whether Harbor is
-  working, missing, connected, or installed.
-- Use plugin/source discovery tools before claiming a provider tool is
-  available.
-- Use tool listings to find exact Harbor tool names rather than guessing.
-- Use trace/run tools when the user asks what happened in a prior execution.
-- Use exec only for one-off Harbor workspace code execution or smoke tests.
+For availability questions, check `hrbr_workspace`, then `hrbr_plugins`, then
+`hrbr_tools`. Do not claim a provider tool is usable until the MCP response
+shows it is installed, connected, and available in the current workspace.
 
-CLI usage is appropriate for:
+For execution questions, prefer `hrbr_exec` when the user asks to chain tools,
+paginate, transform results, fan out across providers, or smoke test a Harbor
+workspace. Report the returned run id when one is present so the user can audit
+the run later.
 
-- \`hrbr login\` or local auth repair.
-- \`hrbr serve\` / MCP startup diagnosis.
-- Hook setup and local session capture.
-- Cases where Codex did not load the MCP tools for this session.
-
-When setup is broken, prefer reporting the exact missing local requirement and a
-single next command. Avoid broad reinstall advice unless the health check shows
-the local package or auth state is actually missing.
+For setup failures, call `hrbr_doctor` first and report the exact missing
+requirement or next command. Use the CLI only for local repair steps such as
+`hrbr login`, hook setup, or diagnosing a session where the MCP tools did not
+load.
