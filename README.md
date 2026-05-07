@@ -235,7 +235,7 @@ Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/curs
 </details>
 
 <details>
-<summary><strong>OpenCode</strong> — opencode.json</summary>
+<summary><strong>OpenCode</strong> — MCP config</summary>
 
 **Prerequisites:** OpenCode and Node.js.
 
@@ -256,8 +256,7 @@ Add this to `opencode.json` in your project root or `~/.config/opencode/opencode
       "type": "local",
       "command": ["npx", "-y", "@zonko-ai/harbor", "serve"]
     }
-  },
-  "plugin": ["hrbr"]
+  }
 }
 ```
 
@@ -268,33 +267,19 @@ Full config reference: [configs/opencode/opencode.json](configs/opencode/opencod
 </details>
 
 <details>
-<summary><strong>OpenClaw</strong> — plugin marketplace or MCP registry</summary>
+<summary><strong>OpenClaw</strong> — MCP registry</summary>
 
 **Prerequisites:** OpenClaw and Node.js.
 
-**Install as a compatible bundle:**
+**Install:**
 
 ```bash
 npm install -g @zonko-ai/harbor
 hrbr login
-openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
-openclaw gateway restart
-```
-
-**Alternative — MCP-only registry:**
-
-```bash
 openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
 ```
 
-**Verify bundle install:**
-
-```bash
-openclaw plugins list
-openclaw plugins inspect hrbr --json
-```
-
-**Verify MCP-only registry install:**
+**Verify:**
 
 ```bash
 openclaw mcp show hrbr --json
@@ -353,6 +338,10 @@ Create `.vscode/mcp.json`:
 }
 ```
 
+Optional hooks for local session capture are available at [configs/vscode-copilot/hooks.json](configs/vscode-copilot/hooks.json).
+
+Full configs: [configs/vscode-copilot/mcp.json](configs/vscode-copilot/mcp.json) | [configs/vscode-copilot/hooks.json](configs/vscode-copilot/hooks.json)
+
 </details>
 
 <details>
@@ -374,6 +363,10 @@ Name: hrbr
 Command: npx
 Args: -y @zonko-ai/harbor serve
 ```
+
+Optional hooks for local session capture are available at [configs/jetbrains-copilot/hooks.json](configs/jetbrains-copilot/hooks.json).
+
+Full configs: [configs/jetbrains-copilot/mcp.json](configs/jetbrains-copilot/mcp.json) | [configs/jetbrains-copilot/hooks.json](configs/jetbrains-copilot/hooks.json)
 
 </details>
 

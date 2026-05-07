@@ -3,9 +3,12 @@
   "mcp": {
     "hrbr": {
       "type": "local",
-      "command": ["npx", "-y", "@zonko-ai/harbor", "serve"]
+      "command": [
+        "npx",
+        "-y",
+        "@zonko-ai/harbor",
+        "serve"
+      ]
     }
-  },
-  "plugin": ["hrbr"]
+  }
 }
-

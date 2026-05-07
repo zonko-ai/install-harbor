@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook jetbrains-copilot pretooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook jetbrains-copilot posttooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "hrbr hook jetbrains-copilot precompact"
+      }
+    ],
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "hrbr hook jetbrains-copilot sessionstart"
+      }
+    ]
+  }
+}

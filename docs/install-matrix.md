@@ -76,23 +76,13 @@ Use configs/gemini-cli/settings.json or split mcp.json.
 
 ## OpenCode
 
-Use configs/opencode/opencode.json.
+Use configs/opencode/opencode.json. This is MCP-only until a native OpenCode plugin module is shipped.
 
 ## OpenClaw
 
-OpenClaw supports compatible Codex/Claude/Cursor bundles through `openclaw plugins install`.
+Current support is MCP registry config only. Do not advertise OpenClaw plugin marketplace install until this repo ships a real `.openclaw-plugin/` bundle.
 
-Install target flow:
-
-```txt
-npm install -g @zonko-ai/harbor
-hrbr login
-openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
-openclaw gateway restart
-openclaw plugins inspect hrbr --json
-```
-
-Fallback MCP registry flow:
+MCP registry flow:
 
 ```txt
 openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
@@ -102,8 +92,6 @@ openclaw mcp show hrbr --json
 Target files:
 
 - .mcp.json
-- .codex-plugin/plugin.json
-- .claude-plugin/plugin.json
 - configs/openclaw/mcp.json
 
 ## Hermes
@@ -122,6 +110,14 @@ hermes mcp test hrbr
 Target files:
 
 - configs/hermes/config.yaml
+
+## VS Code Copilot
+
+Use configs/vscode-copilot/mcp.json and configs/vscode-copilot/hooks.json.
+
+## JetBrains Copilot
+
+Use configs/jetbrains-copilot/mcp.json and configs/jetbrains-copilot/hooks.json.
 
 ## Skills
 
