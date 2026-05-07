@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Harbor hrbr">
-  <rect width="256" height="256" rx="48" fill="#071A1A"/>
-  <circle cx="128" cy="128" r="92" fill="#0F766E"/>
-  <path d="M52 155c22.4-32.8 45.2-49.2 68.2-49.2 21.6 0 37.6 15.2 56 15.2 9.2 0 17.2-3.2 24-10v36.8c-7.6 5.2-16.4 8-26.4 8-22.8 0-38.4-14.8-56.4-14.8-14.8 0-29.6 11.2-44.8 34L52 155Z" fill="#ECFEFF"/>
-  <path d="M64 78h32v80H64V78Zm96 0h32v80h-32V78Z" fill="#A7F3D0"/>
-  <path d="M88 114h80v24H88v-24Z" fill="#D1FAE5"/>
-  <path d="M82 188h92" stroke="#99F6E4" stroke-width="12" stroke-linecap="round"/>
-</svg>
