@@ -17,6 +17,7 @@ Target marketplace files:
 
 - .claude-plugin/marketplace.json
 - .claude-plugin/plugin.json
+- hooks/hooks.json
 
 Install target flow:
 
@@ -46,7 +47,7 @@ args = ["-y", "@zonko-ai/harbor", "serve"]
 
 ## Cursor
 
-Use configs/cursor/mcp.json.
+Use configs/cursor/mcp.json and configs/cursor/hooks.json.
 
 ## Gemini CLI
 

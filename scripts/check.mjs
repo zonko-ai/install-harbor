@@ -8,15 +8,17 @@ const required = [
   ".mcp.json",
   "configs/codex/config.toml",
   "configs/cursor/mcp.json",
+  "configs/cursor/hooks.json",
   "configs/hermes/config.yaml",
   "configs/gemini-cli/mcp.json",
   "configs/openclaw/mcp.json",
-  "configs/opencode/opencode.json"
+  "configs/opencode/opencode.json",
+  "hooks/hooks.json"
 ];
 
 for (const file of required) {
   const text = readFileSync(new URL("../" + file, import.meta.url), "utf8");
-  if (!text.includes("@zonko-ai/harbor") && !file.includes("marketplace") && !file.includes("plugin.json")) {
+  if (!text.includes("@zonko-ai/harbor") && !text.includes("hrbr hook") && !file.includes("marketplace") && !file.includes("plugin.json")) {
     throw new Error(file + " does not mention @zonko-ai/harbor");
   }
 }

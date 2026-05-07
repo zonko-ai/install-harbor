@@ -57,6 +57,8 @@ Restart Claude Code or run:
 
 You should see an `hrbr` MCP server with these tools: `hrbr_workspace`, `hrbr_plugins`, `hrbr_tools`, `hrbr_exec`, `hrbr_context`, `hrbr_traces`, `hrbr_doctor`.
 
+The plugin also installs Claude hooks backed by `hrbr hook ...` for session routing and continuity.
+
 <details>
 <summary>Alternative — MCP-only install</summary>
 
@@ -127,6 +129,8 @@ Add this to `~/.gemini/settings.json`:
 }
 ```
 
+The settings file also includes Gemini hooks backed by `hrbr hook ...`.
+
 **Verify:**
 
 ```text
@@ -162,9 +166,28 @@ Create `.cursor/mcp.json`:
 }
 ```
 
+Create `.cursor/hooks.json`:
+
+```json
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      { "command": "hrbr hook cursor pretooluse" }
+    ],
+    "postToolUse": [
+      { "command": "hrbr hook cursor posttooluse" }
+    ],
+    "stop": [
+      { "command": "hrbr hook cursor stop" }
+    ]
+  }
+}
+```
+
 **Verify:** open Cursor Settings > MCP and confirm `hrbr` is connected.
 
-Full config reference: [configs/cursor/mcp.json](configs/cursor/mcp.json)
+Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/cursor/hooks.json](configs/cursor/hooks.json)
 
 </details>
 

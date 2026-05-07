@@ -5,5 +5,22 @@
       "command": "npx",
       "args": ["-y", "@zonko-ai/harbor", "serve"]
     }
+  },
+  "hooks": {
+    "BeforeAgent": [
+      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli beforeagent" }] }
+    ],
+    "BeforeTool": [
+      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli beforetool" }] }
+    ],
+    "AfterTool": [
+      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli aftertool" }] }
+    ],
+    "PreCompress": [
+      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli precompress" }] }
+    ],
+    "SessionStart": [
+      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli sessionstart" }] }
+    ]
   }
 }

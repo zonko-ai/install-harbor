@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      { "command": "hrbr hook cursor pretooluse" }
+    ],
+    "postToolUse": [
+      { "command": "hrbr hook cursor posttooluse" }
+    ],
+    "stop": [
+      { "command": "hrbr hook cursor stop" }
+    ]
+  }
+}
