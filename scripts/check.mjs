@@ -21,6 +21,8 @@ const required = [
   "hooks/hooks.json",
   "plugins/hrbr/.codex-plugin/plugin.json",
   "plugins/hrbr/.mcp.json",
+  "plugins/hrbr/scripts/run-mcp.sh",
+  "plugins/hrbr/scripts/check-health.sh",
   "plugins/hrbr/skills/hrbr/SKILL.md",
   "plugins/hrbr/assets/harbor-icon.png",
   "plugins/hrbr/assets/harbor-logo.png"
@@ -29,7 +31,7 @@ const required = [
 for (const file of required) {
   const text = readFileSync(new URL("../" + file, import.meta.url), "utf8");
   if (file.endsWith(".svg") || file.endsWith(".png")) continue;
-  if (!text.includes("@zonko-ai/harbor") && !text.includes("hrbr hook") && !text.includes('command = "hrbr"') && !file.includes("marketplace") && !file.includes("plugin.json")) {
+  if (!text.includes("@zonko-ai/harbor") && !text.includes("hrbr hook") && !text.includes('command = "hrbr"') && !text.includes("./scripts/run-mcp.sh") && !file.includes("marketplace") && !file.includes("plugin.json")) {
     throw new Error(file + " does not mention @zonko-ai/harbor");
   }
 }

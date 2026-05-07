@@ -1,8 +1,12 @@
 {
   "mcpServers": {
     "hrbr": {
-      "command": "npx",
-      "args": ["-y", "@zonko-ai/harbor", "serve"]
+      "type": "stdio",
+      "command": "bash",
+      "args": ["./scripts/run-mcp.sh"],
+      "cwd": "./",
+      "startup_timeout_sec": 30,
+      "tool_timeout_sec": 120
     }
   }
 }

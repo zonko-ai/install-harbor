@@ -1,7 +1,7 @@
 {
   "name": "install-harbor",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Harness marketplace and config packaging for Harbor hrbr MCP.",
   "scripts": {
     "check": "node scripts/check.mjs"

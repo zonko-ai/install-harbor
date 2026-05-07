@@ -89,7 +89,19 @@ Then authenticate:
 hrbr login
 ```
 
-The plugin installs the `hrbr` MCP server through `npx -y @zonko-ai/harbor serve` and includes the `hrbr` skill.
+The plugin installs the `hrbr` MCP server through a plugin-local launcher:
+
+```bash
+bash ./scripts/run-mcp.sh
+```
+
+That launcher currently executes:
+
+```bash
+npx -y @zonko-ai/harbor serve
+```
+
+It keeps the Codex MCP config stable while Harbor can change package startup details inside the plugin bundle.
 
 Optional continuity hooks:
 
@@ -137,6 +149,14 @@ Restart Codex.
 
 Manual fallback configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
 
+**Debug local plugin health:**
+
+```bash
+PLUGIN_ROOT="$(find ~/.codex/plugins/cache -path '*/zonko-ai-harbor/hrbr/*' -type d | sort | tail -1)"
+cd "$PLUGIN_ROOT"
+./scripts/check-health.sh
+```
+
 **Update:**
 
 ```bash
@@ -144,6 +164,12 @@ codex plugin marketplace upgrade zonko-ai-harbor
 ```
 
 Codex caches installed plugins by marketplace, plugin name, and plugin version. Harbor bumps the `hrbr` plugin version whenever plugin assets, MCP config, skills, or hooks change so upgrades install into a new cache path.
+
+Typical cache shape:
+
+```text
+~/.codex/plugins/cache/zonko-ai-harbor/hrbr/<version>/
+```
 
 </details>
 
