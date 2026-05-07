@@ -4,9 +4,7 @@
     "hrbr": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@zonko-ai/harbor",
+        "hrbr",
         "serve"
       ]
     }

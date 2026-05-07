@@ -15,19 +15,19 @@ The MCP server can then be started with:
 hrbr serve
 ```
 
-For copy-paste MCP configs, this repo uses the package bootstrap form:
+For copy-paste MCP configs, this repo uses the installed CLI form:
 
 ```bash
-npx -y @zonko-ai/harbor serve
+hrbr serve
 ```
 
-That keeps first-run client installs from failing when `hrbr` is not on `PATH`.
+That keeps every harness on the same singleton sidecar path instead of launching package bootstrap processes per client.
 
 ## Install
 
 Platforms are grouped by install complexity. Plugin-capable platforms get marketplace commands. Other platforms get exact MCP files to create and paste.
 
-Harbor skills are seeded by the `@zonko-ai/harbor` npm postinstall/onboarding path when `npx -y @zonko-ai/harbor serve` installs the package. They are refreshed again by Harbor auth/setup flows. This repo does not ask users to copy `AGENTS.md` or per-project instruction files.
+Harbor skills are seeded by the `@zonko-ai/harbor` npm postinstall/onboarding path when the CLI is installed. They are refreshed again by Harbor auth/setup flows. This repo does not ask users to copy `AGENTS.md` or per-project instruction files.
 
 <details open>
 <summary><strong>Claude Code</strong> — plugin marketplace</summary>
@@ -63,7 +63,7 @@ The plugin also installs Claude hooks backed by `hrbr hook ...` for session rout
 <summary>Alternative — MCP-only install</summary>
 
 ```bash
-claude mcp add hrbr -- npx -y @zonko-ai/harbor serve
+claude mcp add hrbr -- hrbr serve
 ```
 
 </details>
@@ -98,10 +98,10 @@ bash ./scripts/run-mcp.sh
 That launcher currently executes:
 
 ```bash
-npx -y @zonko-ai/harbor serve
+hrbr serve
 ```
 
-It keeps the Codex MCP config stable while Harbor can change package startup details inside the plugin bundle.
+It keeps the Codex MCP config stable while Harbor can change package startup details inside the plugin bundle. hrbr serve starts a lightweight stdio bridge and reuses one local hrbr MCP sidecar on 127.0.0.1, so multiple harnesses do not each own a full MCP server.
 
 Optional continuity hooks:
 
@@ -191,8 +191,8 @@ Add this to `~/.gemini/settings.json`:
 {
   "mcpServers": {
     "hrbr": {
-      "command": "npx",
-      "args": ["-y", "@zonko-ai/harbor", "serve"]
+      "command": "hrbr",
+      "args": ["serve"]
     }
   }
 }
@@ -228,8 +228,8 @@ Create `.cursor/mcp.json`:
 {
   "mcpServers": {
     "hrbr": {
-      "command": "npx",
-      "args": ["-y", "@zonko-ai/harbor", "serve"]
+      "command": "hrbr",
+      "args": ["serve"]
     }
   }
 }
@@ -280,7 +280,7 @@ Add this to `opencode.json` in your project root or `~/.config/opencode/opencode
   "mcp": {
     "hrbr": {
       "type": "local",
-      "command": ["npx", "-y", "@zonko-ai/harbor", "serve"]
+      "command": ["hrbr", "serve"]
     }
   }
 }
@@ -302,7 +302,7 @@ Full config reference: [configs/opencode/opencode.json](configs/opencode/opencod
 ```bash
 npm install -g @zonko-ai/harbor
 hrbr login
-openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
+openclaw mcp set hrbr '{"command":"hrbr","args":["serve"]}'
 ```
 
 **Verify:**
@@ -325,7 +325,7 @@ Full config reference: [configs/openclaw/mcp.json](configs/openclaw/mcp.json)
 ```bash
 npm install -g @zonko-ai/harbor
 hrbr login
-hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
+hermes mcp add hrbr --command hrbr --args serve
 ```
 
 **Verify:**
@@ -357,8 +357,8 @@ Create `.vscode/mcp.json`:
 {
   "servers": {
     "hrbr": {
-      "command": "npx",
-      "args": ["-y", "@zonko-ai/harbor", "serve"]
+      "command": "hrbr",
+      "args": ["serve"]
     }
   }
 }
@@ -386,8 +386,8 @@ Add MCP server in the IDE settings:
 
 ```text
 Name: hrbr
-Command: npx
-Args: -y @zonko-ai/harbor serve
+Command: hrbr
+Args: serve
 ```
 
 Optional hooks for local session capture are available at [configs/jetbrains-copilot/hooks.json](configs/jetbrains-copilot/hooks.json).

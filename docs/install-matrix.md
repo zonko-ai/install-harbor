@@ -9,7 +9,7 @@ npm install -g @zonko-ai/harbor
 hrbr login
 ```
 
-The copied MCP config may still use `npx -y @zonko-ai/harbor serve` so a fresh client can bootstrap without an existing `hrbr` binary.
+The copied MCP config may still use `hrbr serve` so a fresh client can bootstrap without an existing `hrbr` binary.
 
 ## Claude Code
 
@@ -85,7 +85,7 @@ Current support is MCP registry config only. Do not advertise OpenClaw plugin ma
 MCP registry flow:
 
 ```txt
-openclaw mcp set hrbr '{"command":"npx","args":["-y","@zonko-ai/harbor","serve"]}'
+openclaw mcp set hrbr '{"command":"hrbr","args":["serve"]}'
 openclaw mcp show hrbr --json
 ```
 
@@ -103,7 +103,7 @@ Install target flow:
 ```txt
 npm install -g @zonko-ai/harbor
 hrbr login
-hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
+hermes mcp add hrbr --command hrbr --args serve
 hermes mcp test hrbr
 ```
 
@@ -121,7 +121,7 @@ Use configs/jetbrains-copilot/mcp.json and configs/jetbrains-copilot/hooks.json.
 
 ## Skills
 
-Harbor skills are owned by the `@zonko-ai/harbor` package. The npm postinstall/onboarding path seeds them when `npx -y @zonko-ai/harbor serve` installs the package, unless the package is installed under CI, inside a workspace checkout, or with the explicit opt-out environment variables. Auth/login can refresh them, but auth is not required for the postinstall seed.
+Harbor skills are owned by the `@zonko-ai/harbor` package. The npm postinstall/onboarding path seeds them when the CLI is installed, unless the package is installed under CI, inside a workspace checkout, or with the explicit opt-out environment variables. Auth/login can refresh them, but auth is not required for the postinstall seed.
 
 ## Provider Marketplace
 

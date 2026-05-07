@@ -15,14 +15,7 @@ if command -v hrbr >/dev/null 2>&1; then
   hrbr --version || true
 else
   echo "hrbr: not on PATH"
-  echo "hrbr: MCP startup will use npx -y @zonko-ai/harbor serve"
-fi
-
-if command -v npx >/dev/null 2>&1; then
-  echo "npx: $(command -v npx)"
-else
-  echo "npx: missing"
-  exit 1
+  echo "hrbr: MCP startup requires npm install -g @zonko-ai/harbor"
 fi
 
 echo "mcp command: bash ./scripts/run-mcp.sh"
