@@ -2,11 +2,26 @@
 
 Install Harbor's local `hrbr` MCP server into agent clients.
 
-The MCP server is started with:
+Install the Harbor CLI once for normal use:
+
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
+
+The MCP server can then be started with:
+
+```bash
+hrbr serve
+```
+
+For copy-paste MCP configs, this repo uses the package bootstrap form:
 
 ```bash
 npx -y @zonko-ai/harbor serve
 ```
+
+That keeps first-run client installs from failing when `hrbr` is not on `PATH`. Beach also makes a rate-limited background attempt to install the CLI when it starts and cannot find `hrbr`; set `HRBR_CLI_AUTO_INSTALL=0` to disable that best-effort path.
 
 ## Install
 
@@ -22,6 +37,8 @@ Harbor skills are seeded by the `@zonko-ai/harbor` npm postinstall/onboarding pa
 **Install:**
 
 ```bash
+npm install -g @zonko-ai/harbor
+hrbr login
 /plugin marketplace add zonko-ai/install-harbor
 /plugin install hrbr@zonko-ai-harbor
 ```
@@ -59,6 +76,8 @@ claude mcp add hrbr -- npx -y @zonko-ai/harbor serve
 **Install:**
 
 ```bash
+npm install -g @zonko-ai/harbor
+hrbr login
 codex plugin marketplace add zonko-ai/install-harbor
 ```
 
@@ -90,6 +109,11 @@ Full config reference: [configs/codex/config.toml](configs/codex/config.toml)
 
 **Install:**
 
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
+
 Add this to `~/.gemini/settings.json`:
 
 ```json
@@ -120,6 +144,11 @@ Full config reference: [configs/gemini-cli/settings.json](configs/gemini-cli/set
 
 **Install:**
 
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
+
 Create `.cursor/mcp.json`:
 
 ```json
@@ -145,6 +174,11 @@ Full config reference: [configs/cursor/mcp.json](configs/cursor/mcp.json)
 **Prerequisites:** OpenCode and Node.js.
 
 **Install:**
+
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
 
 Add this to `opencode.json` in your project root or `~/.config/opencode/opencode.json`:
 
@@ -175,6 +209,8 @@ Full config reference: [configs/opencode/opencode.json](configs/opencode/opencod
 **Install as a compatible bundle:**
 
 ```bash
+npm install -g @zonko-ai/harbor
+hrbr login
 openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
 openclaw gateway restart
 ```
@@ -210,6 +246,8 @@ Full config reference: [configs/openclaw/mcp.json](configs/openclaw/mcp.json)
 **Install:**
 
 ```bash
+npm install -g @zonko-ai/harbor
+hrbr login
 hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
 ```
 
@@ -230,6 +268,11 @@ Full config reference: [configs/hermes/config.yaml](configs/hermes/config.yaml)
 **Prerequisites:** VS Code Copilot Chat with MCP support and Node.js.
 
 **Install:**
+
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
 
 Create `.vscode/mcp.json`:
 
@@ -252,6 +295,11 @@ Create `.vscode/mcp.json`:
 **Prerequisites:** JetBrains IDE with Copilot MCP support and Node.js.
 
 **Install:**
+
+```bash
+npm install -g @zonko-ai/harbor
+hrbr login
+```
 
 Add MCP server in the IDE settings:
 

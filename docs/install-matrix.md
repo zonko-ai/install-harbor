@@ -1,5 +1,16 @@
 # install-harbor Matrix
 
+## CLI Bootstrap
+
+Recommended first step for every harness:
+
+```txt
+npm install -g @zonko-ai/harbor
+hrbr login
+```
+
+The copied MCP config may still use `npx -y @zonko-ai/harbor serve` so a fresh client can bootstrap without an existing `hrbr` binary. Beach performs a rate-limited background install attempt when it starts and cannot find `hrbr`; `HRBR_CLI_AUTO_INSTALL=0` disables that path.
+
 ## Claude Code
 
 Target marketplace files:
@@ -10,6 +21,8 @@ Target marketplace files:
 Install target flow:
 
 ```txt
+npm install -g @zonko-ai/harbor
+hrbr login
 /plugin marketplace add zonko-ai/install-harbor
 /plugin install hrbr@zonko-ai-harbor
 /reload-plugins
@@ -50,6 +63,8 @@ OpenClaw supports compatible Codex/Claude/Cursor bundles through `openclaw plugi
 Install target flow:
 
 ```txt
+npm install -g @zonko-ai/harbor
+hrbr login
 openclaw plugins install hrbr --marketplace https://github.com/zonko-ai/install-harbor
 openclaw gateway restart
 openclaw plugins inspect hrbr --json
@@ -76,6 +91,8 @@ Hermes has first-class MCP server management with `hermes mcp add`. Use MCP rath
 Install target flow:
 
 ```txt
+npm install -g @zonko-ai/harbor
+hrbr login
 hermes mcp add hrbr --command npx --args -y @zonko-ai/harbor serve
 hermes mcp test hrbr
 ```
