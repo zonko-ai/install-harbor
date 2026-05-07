@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hrbr hook pretooluse"
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook pretooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
           }
         ]
       }
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hrbr hook posttooluse"
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook posttooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
           }
         ]
       }
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "hrbr hook userpromptsubmit"
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook userpromptsubmit < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
           }
         ]
       }

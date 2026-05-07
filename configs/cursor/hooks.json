@@ -2,13 +2,19 @@
   "version": 1,
   "hooks": {
     "preToolUse": [
-      { "command": "hrbr hook cursor pretooluse" }
+      {
+        "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook cursor pretooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+      }
     ],
     "postToolUse": [
-      { "command": "hrbr hook cursor posttooluse" }
+      {
+        "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook cursor posttooluse < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+      }
     ],
     "stop": [
-      { "command": "hrbr hook cursor stop" }
+      {
+        "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook cursor stop < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+      }
     ]
   }
 }

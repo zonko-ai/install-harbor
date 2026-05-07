@@ -3,24 +3,68 @@
   "mcpServers": {
     "hrbr": {
       "command": "npx",
-      "args": ["-y", "@zonko-ai/harbor", "serve"]
+      "args": [
+        "-y",
+        "@zonko-ai/harbor",
+        "serve"
+      ]
     }
   },
   "hooks": {
     "BeforeAgent": [
-      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli beforeagent" }] }
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook gemini-cli beforeagent < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+          }
+        ]
+      }
     ],
     "BeforeTool": [
-      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli beforetool" }] }
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook gemini-cli beforetool < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+          }
+        ]
+      }
     ],
     "AfterTool": [
-      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli aftertool" }] }
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'tmp=$(mktemp \"${TMPDIR:-/tmp}/hrbr-hook.XXXXXX\") || { printf \"{}\\n\"; exit 0; }; cat > \"$tmp\"; (hrbr hook gemini-cli aftertool < \"$tmp\" >/dev/null 2>&1; rm -f \"$tmp\") >/dev/null 2>&1 & printf \"{}\\n\"'"
+          }
+        ]
+      }
     ],
     "PreCompress": [
-      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli precompress" }] }
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hrbr hook gemini-cli precompress"
+          }
+        ]
+      }
     ],
     "SessionStart": [
-      { "matcher": "", "hooks": [{ "type": "command", "command": "hrbr hook gemini-cli sessionstart" }] }
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hrbr hook gemini-cli sessionstart"
+          }
+        ]
+      }
     ]
   }
 }
