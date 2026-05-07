@@ -71,36 +71,57 @@ claude mcp add hrbr -- npx -y @zonko-ai/harbor serve
 </details>
 
 <details>
-<summary><strong>Codex</strong> — plugin marketplace</summary>
+<summary><strong>Codex</strong> — MCP config and hooks</summary>
 
-**Prerequisites:** Codex CLI with plugin support and Node.js.
+**Prerequisites:** Codex CLI and Node.js.
 
 **Install:**
 
 ```bash
 npm install -g @zonko-ai/harbor
 hrbr login
-codex plugin marketplace add zonko-ai/install-harbor
 ```
-
-Then open `/plugins`, choose `hrbr`, and install it.
-
-**Verify:** restart Codex and list MCP tools. `hrbr_doctor action=status` should return local setup status.
-
-<details>
-<summary>Alternative — MCP-only config</summary>
 
 Add this to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.hrbr]
-command = "npx"
-args = ["-y", "@zonko-ai/harbor", "serve"]
+command = "hrbr"
+args = ["serve"]
 ```
 
-</details>
+Create `~/.codex/hooks.json`:
 
-Full config reference: [configs/codex/config.toml](configs/codex/config.toml)
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "local_shell|shell|shell_command|exec_command|container.exec|Bash|Shell|grep_files|mcp__",
+        "hooks": [{ "type": "command", "command": "hrbr hook codex pretooluse" }]
+      }
+    ],
+    "PostToolUse": [
+      { "hooks": [{ "type": "command", "command": "hrbr hook codex posttooluse" }] }
+    ],
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "hrbr hook codex sessionstart" }] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [{ "type": "command", "command": "hrbr hook codex userpromptsubmit" }] }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "hrbr hook codex stop" }] }
+    ]
+  }
+}
+```
+
+Restart Codex.
+
+**Verify:** list MCP tools. `hrbr_doctor action=status` should return local setup status.
+
+Full configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
 
 </details>
 

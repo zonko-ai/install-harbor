@@ -31,18 +31,19 @@ hrbr login
 
 ## Codex
 
-Target marketplace/config files:
+Target config files:
 
-- .agents/plugins/marketplace.json
-- .codex-plugin/plugin.json
 - configs/codex/config.toml
+- configs/codex/hooks.json
 
-Manual MCP config:
+Codex uses the same pattern as context-mode: install the binary, add MCP config, add hooks, restart Codex. Do not advertise the Codex plugin marketplace path unless Codex starts supporting MCP-only plugins there.
+
+MCP config:
 
 ```toml
 [mcp_servers.hrbr]
-command = "npx"
-args = ["-y", "@zonko-ai/harbor", "serve"]
+command = "hrbr"
+args = ["serve"]
 ```
 
 ## Cursor
