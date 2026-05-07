@@ -26,6 +26,8 @@
       "Run a Harbor workspace smoke test"
     ],
     "brandColor": "#0F766E",
+    "composerIcon": "./assets/hrbr-small.svg",
+    "logo": "./assets/hrbr-logo.svg",
     "screenshots": []
   }
 }
