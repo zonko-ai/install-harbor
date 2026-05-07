@@ -99,32 +99,6 @@ Add this to `~/.gemini/settings.json`:
       "command": "npx",
       "args": ["-y", "@zonko-ai/harbor", "serve"]
     }
-  },
-  "hooks": {
-    "BeforeTool": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli beforetool" }]
-      }
-    ],
-    "AfterTool": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli aftertool" }]
-      }
-    ],
-    "PreCompress": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli precompress" }]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli sessionstart" }]
-      }
-    ]
   }
 }
 ```
@@ -140,7 +114,7 @@ Full config reference: [configs/gemini-cli/settings.json](configs/gemini-cli/set
 </details>
 
 <details>
-<summary><strong>Cursor</strong> — MCP and hooks</summary>
+<summary><strong>Cursor</strong> — MCP config</summary>
 
 **Prerequisites:** Cursor Agent and Node.js.
 
@@ -159,28 +133,9 @@ Create `.cursor/mcp.json`:
 }
 ```
 
-Create `.cursor/hooks.json`:
-
-```json
-{
-  "version": 1,
-  "hooks": {
-    "preToolUse": [
-      { "command": "npx -y @zonko-ai/harbor hook cursor pretooluse" }
-    ],
-    "postToolUse": [
-      { "command": "npx -y @zonko-ai/harbor hook cursor posttooluse" }
-    ],
-    "stop": [
-      { "command": "npx -y @zonko-ai/harbor hook cursor stop" }
-    ]
-  }
-}
-```
-
 **Verify:** open Cursor Settings > MCP and confirm `hrbr` is connected.
 
-Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/cursor/hooks.json](configs/cursor/hooks.json)
+Full config reference: [configs/cursor/mcp.json](configs/cursor/mcp.json)
 
 </details>
 

@@ -5,32 +5,5 @@
       "command": "npx",
       "args": ["-y", "@zonko-ai/harbor", "serve"]
     }
-  },
-  "hooks": {
-    "BeforeTool": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli beforetool" }]
-      }
-    ],
-    "AfterTool": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli aftertool" }]
-      }
-    ],
-    "PreCompress": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli precompress" }]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": "npx -y @zonko-ai/harbor hook gemini-cli sessionstart" }]
-      }
-    ]
   }
 }
-
