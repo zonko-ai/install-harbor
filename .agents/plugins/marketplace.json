@@ -1,0 +1,20 @@
+{
+  "name": "zonko-ai-harbor",
+  "interface": {
+    "displayName": "Zonko AI Harbor"
+  },
+  "plugins": [
+    {
+      "name": "hrbr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hrbr"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    }
+  ]
+}

@@ -71,26 +71,40 @@ claude mcp add hrbr -- npx -y @zonko-ai/harbor serve
 </details>
 
 <details>
-<summary><strong>Codex</strong> — MCP config and hooks</summary>
+<summary><strong>Codex</strong> — plugin marketplace</summary>
 
-**Prerequisites:** Codex CLI and Node.js.
+**Prerequisites:** Codex CLI with plugin support and Node.js.
 
 **Install:**
 
 ```bash
-npm install -g @zonko-ai/harbor
+codex plugin marketplace add zonko-ai/install-harbor
+```
+
+Open `/plugins`, select `Zonko AI Harbor`, choose `hrbr`, and install it.
+
+Then authenticate:
+
+```bash
 hrbr login
 ```
 
-Add this to `~/.codex/config.toml`:
+The plugin installs the `hrbr` MCP server through `npx -y @zonko-ai/harbor serve` and includes the `hrbr` skill.
 
-```toml
-[mcp_servers.hrbr]
-command = "hrbr"
-args = ["serve"]
+Optional continuity hooks:
+
+```bash
+mkdir -p ~/.codex
+cp configs/codex/hooks.json ~/.codex/hooks.json
 ```
 
-Create `~/.codex/hooks.json`:
+The hooks use the global `hrbr` command for local session capture. Install the CLI first if you enable hooks:
+
+```bash
+npm install -g @zonko-ai/harbor
+```
+
+Hook config:
 
 ```json
 {
@@ -121,7 +135,7 @@ Restart Codex.
 
 **Verify:** list MCP tools. `hrbr_doctor action=status` should return local setup status.
 
-Full configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
+Manual fallback configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
 
 </details>
 

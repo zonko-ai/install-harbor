@@ -31,14 +31,26 @@ hrbr login
 
 ## Codex
 
-Target config files:
+Target marketplace/config files:
 
+- .agents/plugins/marketplace.json
+- plugins/hrbr/.codex-plugin/plugin.json
+- plugins/hrbr/.mcp.json
+- plugins/hrbr/skills/hrbr/SKILL.md
 - configs/codex/config.toml
 - configs/codex/hooks.json
 
-Codex uses the same pattern as context-mode: install the binary, add MCP config, add hooks, restart Codex. Do not advertise the Codex plugin marketplace path unless Codex starts supporting MCP-only plugins there.
+Codex plugin marketplace expects a marketplace manifest that points at a nested plugin directory. A root `.codex-plugin/plugin.json` is not enough to make the marketplace tab show an installable plugin.
 
-MCP config:
+Marketplace install:
+
+```bash
+codex plugin marketplace add zonko-ai/install-harbor
+```
+
+Then open `/plugins`, select `Zonko AI Harbor`, choose `hrbr`, and install it. Hooks remain a separate manual Codex config.
+
+Manual MCP fallback:
 
 ```toml
 [mcp_servers.hrbr]

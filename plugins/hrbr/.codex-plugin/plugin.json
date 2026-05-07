@@ -1,0 +1,31 @@
+{
+  "name": "hrbr",
+  "version": "0.1.0",
+  "description": "Local Harbor MCP surface for provider marketplace, workspace tools, cloud exec, traces, and context.",
+  "author": {
+    "name": "Zonko AI",
+    "url": "https://github.com/zonko-ai"
+  },
+  "homepage": "https://tryharbor.ai",
+  "repository": "https://github.com/zonko-ai/install-harbor",
+  "license": "UNLICENSED",
+  "keywords": ["harbor", "hrbr", "mcp", "plugins", "workspace", "exec"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "hrbr",
+    "shortDescription": "Harbor workspace MCP tools",
+    "longDescription": "Connect Codex to Harbor through the local hrbr MCP server for workspace state, provider marketplace discovery, plugin tools, cloud exec, traces, context, and setup diagnostics.",
+    "developerName": "Zonko AI",
+    "category": "Coding",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://tryharbor.ai",
+    "defaultPrompt": [
+      "Check my Harbor workspace and available plugin tools",
+      "Use Harbor to inspect connected provider tools",
+      "Run a Harbor workspace smoke test"
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}
