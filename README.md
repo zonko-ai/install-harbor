@@ -55,15 +55,13 @@ Restart Claude Code or run:
 /mcp
 ```
 
-You should see an `hrbr` MCP server with these tools: `hrbr_workspace`, `hrbr_plugins`, `hrbr_tools`, `hrbr_exec`, `hrbr_context`, `hrbr_traces`, `hrbr_doctor`.
-
-The plugin also installs Claude hooks backed by `hrbr hook ...` for session routing and continuity.
+You should see an `hrbr` MCP server with Reef's `inspect` and `exec` tools.
 
 <details>
 <summary>Alternative — MCP-only install</summary>
 
 ```bash
-claude mcp add hrbr -- hrbr serve
+claude mcp add -s user hrbr -- hrbr serve
 ```
 
 </details>
@@ -103,51 +101,11 @@ hrbr serve
 
 It keeps the Codex MCP config stable while Harbor can change package startup details inside the plugin bundle. hrbr serve starts a lightweight stdio bridge and reuses one local hrbr MCP sidecar on 127.0.0.1, so multiple harnesses do not each own a full MCP server.
 
-Optional continuity hooks:
+Restart Codex after installing the plugin.
 
-```bash
-mkdir -p ~/.codex
-cp configs/codex/hooks.json ~/.codex/hooks.json
-```
+**Verify:** list MCP tools. Harbor should expose Reef's `inspect` and `exec` tools.
 
-The hooks use the global `hrbr` command for local session capture. Install the CLI first if you enable hooks:
-
-```bash
-npm install -g @zonko-ai/harbor
-```
-
-Hook config:
-
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "local_shell|shell|shell_command|exec_command|container.exec|Bash|Shell|grep_files|mcp__",
-        "hooks": [{ "type": "command", "command": "hrbr hook codex pretooluse" }]
-      }
-    ],
-    "PostToolUse": [
-      { "hooks": [{ "type": "command", "command": "hrbr hook codex posttooluse" }] }
-    ],
-    "SessionStart": [
-      { "hooks": [{ "type": "command", "command": "hrbr hook codex sessionstart" }] }
-    ],
-    "UserPromptSubmit": [
-      { "hooks": [{ "type": "command", "command": "hrbr hook codex userpromptsubmit" }] }
-    ],
-    "Stop": [
-      { "hooks": [{ "type": "command", "command": "hrbr hook codex stop" }] }
-    ]
-  }
-}
-```
-
-Restart Codex.
-
-**Verify:** list MCP tools. `hrbr_doctor action=status` should return local setup status.
-
-Manual fallback configs: [configs/codex/config.toml](configs/codex/config.toml) | [configs/codex/hooks.json](configs/codex/hooks.json)
+Manual fallback config: [configs/codex/config.toml](configs/codex/config.toml)
 
 **Debug local plugin health:**
 
@@ -163,7 +121,7 @@ cd "$PLUGIN_ROOT"
 codex plugin marketplace upgrade zonko-ai-harbor
 ```
 
-Codex caches installed plugins by marketplace, plugin name, and plugin version. Harbor bumps the `hrbr` plugin version whenever plugin assets, MCP config, skills, or hooks change so upgrades install into a new cache path.
+Codex caches installed plugins by marketplace, plugin name, and plugin version. Harbor bumps the `hrbr` plugin version whenever plugin assets, MCP config, or skills change so upgrades install into a new cache path.
 
 Typical cache shape:
 
@@ -197,8 +155,6 @@ Add this to `~/.gemini/settings.json`:
   }
 }
 ```
-
-The settings file also includes Gemini hooks backed by `hrbr hook ...`.
 
 **Verify:**
 
@@ -235,28 +191,9 @@ Create `.cursor/mcp.json`:
 }
 ```
 
-Create `.cursor/hooks.json`:
-
-```json
-{
-  "version": 1,
-  "hooks": {
-    "preToolUse": [
-      { "command": "hrbr hook cursor pretooluse" }
-    ],
-    "postToolUse": [
-      { "command": "hrbr hook cursor posttooluse" }
-    ],
-    "stop": [
-      { "command": "hrbr hook cursor stop" }
-    ]
-  }
-}
-```
-
 **Verify:** open Cursor Settings > MCP and confirm `hrbr` is connected.
 
-Full configs: [configs/cursor/mcp.json](configs/cursor/mcp.json) | [configs/cursor/hooks.json](configs/cursor/hooks.json)
+Full config: [configs/cursor/mcp.json](configs/cursor/mcp.json)
 
 </details>
 
@@ -286,7 +223,7 @@ Add this to `opencode.json` in your project root or `~/.config/opencode/opencode
 }
 ```
 
-**Verify:** start OpenCode and ask for `hrbr_doctor action=status`.
+**Verify:** start OpenCode and confirm the `inspect` and `exec` MCP tools are available.
 
 Full config reference: [configs/opencode/opencode.json](configs/opencode/opencode.json)
 
@@ -364,9 +301,7 @@ Create `.vscode/mcp.json`:
 }
 ```
 
-Optional hooks for local session capture are available at [configs/vscode-copilot/hooks.json](configs/vscode-copilot/hooks.json).
-
-Full configs: [configs/vscode-copilot/mcp.json](configs/vscode-copilot/mcp.json) | [configs/vscode-copilot/hooks.json](configs/vscode-copilot/hooks.json)
+Full config: [configs/vscode-copilot/mcp.json](configs/vscode-copilot/mcp.json)
 
 </details>
 
@@ -390,21 +325,15 @@ Command: hrbr
 Args: serve
 ```
 
-Optional hooks for local session capture are available at [configs/jetbrains-copilot/hooks.json](configs/jetbrains-copilot/hooks.json).
-
-Full configs: [configs/jetbrains-copilot/mcp.json](configs/jetbrains-copilot/mcp.json) | [configs/jetbrains-copilot/hooks.json](configs/jetbrains-copilot/hooks.json)
+Full config: [configs/jetbrains-copilot/mcp.json](configs/jetbrains-copilot/mcp.json)
 
 </details>
 
 ## Provider Marketplace
 
-Once installed, provider setup happens through MCP tools:
+Once installed, provider setup happens through Reef MCP tools:
 
 ```text
-hrbr_plugins action=registry
-hrbr_plugins action=install slug=<provider>
-hrbr_plugins action=connect namespace=<source>
-hrbr_tools action=search query=<intent>
-hrbr_tools action=describe tool_id=<id>
-hrbr_tools action=invoke tool_id=<id> input=<json>
+inspect: check auth, workspace, source, and tool state
+exec: run Harbor Cloud TypeScript against the current workspace
 ```

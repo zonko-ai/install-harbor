@@ -17,7 +17,6 @@ Target marketplace files:
 
 - .claude-plugin/marketplace.json
 - .claude-plugin/plugin.json
-- hooks/hooks.json
 
 Install target flow:
 
@@ -38,7 +37,6 @@ Target marketplace/config files:
 - plugins/hrbr/.mcp.json
 - plugins/hrbr/skills/hrbr/SKILL.md
 - configs/codex/config.toml
-- configs/codex/hooks.json
 
 Codex plugin marketplace expects a marketplace manifest that points at a nested plugin directory. A root `.codex-plugin/plugin.json` is not enough to make the marketplace tab show an installable plugin.
 
@@ -48,7 +46,7 @@ Marketplace install:
 codex plugin marketplace add zonko-ai/install-harbor
 ```
 
-Then open `/plugins`, select `Zonko AI Harbor`, choose `hrbr`, and install it. Hooks remain a separate manual Codex config.
+Then open `/plugins`, select `Zonko AI Harbor`, choose `hrbr`, and install it.
 
 Update command:
 
@@ -56,7 +54,7 @@ Update command:
 codex plugin marketplace upgrade zonko-ai-harbor
 ```
 
-Codex stores installed plugins under `~/.codex/plugins/cache/<marketplace>/<plugin>/<version>/`. Any change to Codex plugin assets, MCP config, skills, or hooks must bump `plugins/hrbr/.codex-plugin/plugin.json` `version`; otherwise an installed plugin may keep using the old cache path until manually refreshed.
+Codex stores installed plugins under `~/.codex/plugins/cache/<marketplace>/<plugin>/<version>/`. Any change to Codex plugin assets, MCP config, or skills must bump `plugins/hrbr/.codex-plugin/plugin.json` `version`; otherwise an installed plugin may keep using the old cache path until manually refreshed.
 
 Manual MCP fallback:
 
@@ -68,7 +66,7 @@ args = ["serve"]
 
 ## Cursor
 
-Use configs/cursor/mcp.json and configs/cursor/hooks.json.
+Use configs/cursor/mcp.json.
 
 ## Gemini CLI
 
@@ -113,11 +111,11 @@ Target files:
 
 ## VS Code Copilot
 
-Use configs/vscode-copilot/mcp.json and configs/vscode-copilot/hooks.json.
+Use configs/vscode-copilot/mcp.json.
 
 ## JetBrains Copilot
 
-Use configs/jetbrains-copilot/mcp.json and configs/jetbrains-copilot/hooks.json.
+Use configs/jetbrains-copilot/mcp.json.
 
 ## Skills
 
@@ -125,12 +123,7 @@ Harbor skills are owned by the `@zonko-ai/harbor` package. The npm postinstall/o
 
 ## Provider Marketplace
 
-Do not create one MCP server or tool per provider. Harbor providers stay behind:
+Do not create one MCP server or tool per provider. Harbor providers stay behind Reef:
 
-- hrbr_plugins action=registry
-- hrbr_plugins action=install
-- hrbr_plugins action=connect
-- hrbr_tools action=search
-- hrbr_tools action=describe
-- hrbr_tools action=invoke
-- hrbr_exec for multi-step orchestration
+- inspect for auth, workspace, source, and tool state
+- exec for multi-step Harbor Cloud orchestration

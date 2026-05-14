@@ -1,6 +1,6 @@
 {
   "name": "hrbr",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Local Harbor MCP surface over the hrbr CLI package.",
   "author": {
     "name": "Zonko AI"
